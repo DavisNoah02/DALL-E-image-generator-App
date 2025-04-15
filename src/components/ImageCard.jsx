@@ -1,32 +1,14 @@
 import React from 'react';
-import loaderSvg from '../assets/images/loader.svg';
-import downloadSvg from '../assets/images/download.svg';
 
-const ImageCard = ({ image }) => {
-  const downloadImage = () => {
-    if (image.loading) return;
-    
-    const link = document.createElement('a');
-    link.href = image.url;
-    link.download = `ai-image-${new Date().getTime()}.png`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  return (
-    <div className={`img-card ${image.loading ? 'loading' : ''}`}>
-      <img 
-        src={image.loading ? loaderSvg : image.url} 
-        alt={image.loading ? "Loading..." : "AI generated image"} 
-      />
-      {!image.loading && (
-        <div className="download-btn" onClick={downloadImage}>
-          <img src={downloadSvg} alt="Download" />
+function ImageCard({ imgUrl }) {
+    return (
+        <div className="img_card bg-white rounded-lg shadow-md overflow-hidden">
+            <img src={imgUrl} alt="generated" className="w-full h-48 object-cover"/>
+            <a href={imgUrl} download className="download_btn block text-center p-2 bg-green-500 text-white">
+                Download
+            </a>
         </div>
-      )}
-    </div>
-  );
-};
+    );
+}
 
 export default ImageCard;
