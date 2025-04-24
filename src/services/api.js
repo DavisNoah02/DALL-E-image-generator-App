@@ -1,39 +1,25 @@
-import { API_KEY } from '../config';
+import axios from "axios";
 
-export const generateImages = async (prompt, quantity) => {
+const API_URL = "http://localhost:8000/api";
+
+export const generateImages = async (prompt, count, userId) => {
   try {
-    // In a real app, this request should go through your backend
-    // to keep your API key secure
-    const response = await fetch("https://api.openai.com/v1/images/generations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${API_KEY}`
-      },
-      body: JSON.stringify({
-        prompt: prompt,
-        n: quantity,
-        size: "1024x1024",
-        response_format: "b64_json"
-      })
+    const response = await axios.post(`${API_URL}/generate/`, {
+      prompt,
+      count,
+      userId
     });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error?.message || "Failed to generate images");
-    }
-
-    const { data } = await response.json();
-    
-    // Format the response data
-    return data.map((item, index) => ({
-      id: `img-${Date.now()}-${index}`,
-      url: `data:image/jpeg;base64,${item.b64_json}`,
-      prompt: prompt,
-      loading: false
-    }));
+    return response.data;
   } catch (error) {
-    console.error("API Error:", error);
-    throw error;
+    throw error.response ? error.response.data : error;
+  }
+};
+
+export const getUserImages = async (userId) => {
+  try {
+    const response = await axios.get(`${API_URL}/images/${userId}/`);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error;
   }
 };
