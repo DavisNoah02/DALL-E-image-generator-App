@@ -412,7 +412,7 @@ const ImageGenerator = () => {
 
         {/* Footer */}
         <footer className="mt-12 text-center text-sm text-gray-500">
-          <p>DreamCanvas AI © 2025 - Create beautiful images with the power of AI</p>
+          <p>IMAGIFY AI - Create beautiful images with the power of AI</p>
         </footer>
       </div>
     </div>
