@@ -9,7 +9,7 @@ import { auth } from "../firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const SignUp = ({ onGoogleSignUp }) => {
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -91,15 +91,6 @@ const SignUp = ({ onGoogleSignUp }) => {
               <span className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-gray-300"></span>
               <span className="relative bg-white px-3 text-gray-500 text-sm">or</span>
             </div>
-            <Button
-              type="button"
-              onClick={onGoogleSignUp}
-              variant="outline"
-              className="flex items-center justify-center gap-2 w-full bg-gray-300 hover:bg-gray-500"
-            >
-              <FcGoogle className="text-xl" />
-              Continue with Google
-            </Button>
             <p className="text-sm text-center text-gray-600">
               Already have an account?{" "}
               <button
