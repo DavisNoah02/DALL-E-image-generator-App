@@ -1,4 +1,5 @@
 // filepath: /D:/Web Dev/Major Projects/DALL-E-image-generator-App/vite.config.js
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -19,6 +20,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(path.dirname(fileURLToPath(import.meta.url)), "./src"),
+      // Add this for shadcn/ui components
+      "@components": path.resolve(path.dirname(fileURLToPath(import.meta.url)), "./src/components"),
     },
   },
 })
