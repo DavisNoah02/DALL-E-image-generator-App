@@ -46,7 +46,7 @@ const Login = ({ onForgotPassword }) => {
       <Card className="w-full max-w-md shadow-2xl rounded-2xl border-none">
         <CardHeader>
           <div className="flex items-center justify-center py-3">
-            <Sparkles className="text-indigo-600 mr-2" size={28} />
+            {/* <Sparkles className="text-indigo-600 mr-2" size={28} /> */}
             <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               IMAGIFY AI LOGIN
             </h1>
