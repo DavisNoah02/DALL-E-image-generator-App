@@ -14,7 +14,7 @@ export default function CollectionPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedFilter, setSelectedFilter] = useState('all')
   const [loading, setLoading] = useState(true)
-  const { user } = useAuth()
+  const { currentUser } = useAuth()
 
   const filters = [
     { id: 'all', name: 'All Images' },
@@ -28,10 +28,10 @@ export default function CollectionPage() {
   ]
 
   useEffect(() => {
-    if (user) {
+    if (currentUser) {
       loadUserImages()
     }
-  }, [user])
+  }, [currentUser])
 
   useEffect(() => {
     filterImages()
@@ -40,7 +40,7 @@ export default function CollectionPage() {
   const loadUserImages = async () => {
     try {
       setLoading(true)
-      const response = await getUserImages(user.uid)
+      const response = await getUserImages(currentUser.uid)
       setSavedImages(response.images || [])
     } catch (error) {
       console.error('Error loading images:', error)
@@ -80,7 +80,7 @@ export default function CollectionPage() {
 
   const handleDeleteImage = async (imageId) => {
     try {
-      await deleteImage(imageId, user.uid)
+      await deleteImage(imageId, currentUser.uid)
       await loadUserImages()
       toast.success('Image deleted successfully')
     } catch (error) {
@@ -118,7 +118,7 @@ export default function CollectionPage() {
 
   const handleToggleFavorite = async (imageId) => {
     try {
-      await toggleFavorite(imageId, user.uid)
+      await toggleFavorite(imageId, currentUser.uid)
       await loadUserImages() // Reload to get updated favorite status
       toast.success('Favorite updated successfully')
     } catch (error) {

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate, useLocation, Link } from "react-router-dom"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,6 +13,9 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
+
+  const from = location.state?.from?.pathname || "/generate"
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -20,7 +23,7 @@ export default function LoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password)
       toast.success("Login successful!")
-      navigate("/generate")
+      navigate(from, { replace: true })
     } catch (error) {
       toast.error("Invalid email or password.")
     } finally {
@@ -34,7 +37,7 @@ export default function LoginPage() {
       const provider = new GoogleAuthProvider()
       await signInWithPopup(auth, provider)
       toast.success("Google login successful!")
-      navigate("/generate")
+      navigate(from, { replace: true })
     } catch (error) {
       toast.error(error.message)
     } finally {

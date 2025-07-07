@@ -16,6 +16,9 @@ import LoginPage from './pages/auth/LoginPage'
 import SignUpPage from './pages/auth/SignUpPage'
 import ForgotPasswordPage from './pages/auth/ForgotPasswordPage'
 
+// Shared Components
+import Footer from './components/shared/Footer'
+
 // Protected Route Component
 import ProtectedRoute from './components/shared/ProtectedRoute'
 
@@ -23,34 +26,36 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen bg-background">
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<MainLayout><HomePage /></MainLayout>} />
-            
-            {/* Auth Routes */}
-            <Route path="/login" element={<AuthLayout><LoginPage /></AuthLayout>} />
-            <Route path="/signup" element={<AuthLayout><SignUpPage /></AuthLayout>} />
-            <Route path="/forgot-password" element={<AuthLayout><ForgotPasswordPage /></AuthLayout>} />
-            
-            {/* Protected Routes */}
-            <Route path="/generate" element={
-              <ProtectedRoute>
-                <MainLayout><GeneratePage /></MainLayout>
-              </ProtectedRoute>
-            } />
-            <Route path="/collection" element={
-              <ProtectedRoute>
-                <MainLayout><CollectionPage /></MainLayout>
-              </ProtectedRoute>
-            } />
-            <Route path="/profile" element={
-              <ProtectedRoute>
-                <MainLayout><ProfilePage /></MainLayout>
-              </ProtectedRoute>
-            } />
-          </Routes>
-          
+        <div className="min-h-screen bg-background flex flex-col">
+          <div className="flex-1">
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<HomePage />} />
+              
+              {/* Auth Routes */}
+              <Route path="/login" element={<AuthLayout><LoginPage /></AuthLayout>} />
+              <Route path="/signup" element={<AuthLayout><SignUpPage /></AuthLayout>} />
+              <Route path="/forgot-password" element={<AuthLayout><ForgotPasswordPage /></AuthLayout>} />
+              
+              {/* Protected Routes */}
+              <Route path="/generate" element={
+                <ProtectedRoute>
+                  <MainLayout><GeneratePage /></MainLayout>
+                </ProtectedRoute>
+              } />
+              <Route path="/collection" element={
+                <ProtectedRoute>
+                  <MainLayout><CollectionPage /></MainLayout>
+                </ProtectedRoute>
+              } />
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <MainLayout><ProfilePage /></MainLayout>
+                </ProtectedRoute>
+              } />
+            </Routes>
+          </div>
+          <Footer />
           <ToastContainer
             position="top-right"
             autoClose={5000}

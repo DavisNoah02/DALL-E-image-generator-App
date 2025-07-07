@@ -21,10 +21,10 @@ export default function HomePage() {
         </p>
         <div className="flex gap-4 justify-center">
           <Button asChild size="lg" className="text-lg px-8">
-            <Link href="/generate">Start Creating</Link>
+            <Link to="/generate">Start Creating</Link>
           </Button>
           <Button asChild variant="outline" size="lg" className="text-lg px-8 bg-transparent">
-            <Link href="/collection">View Gallery</Link>
+            <Link to="/collection">View Gallery</Link>
           </Button>
         </div>
       </div>
@@ -61,8 +61,36 @@ export default function HomePage() {
         </Card>
       </div>
 
+      {/* How it Works Section */}
+      <div className="mb-20">
+        <h2 className="text-3xl font-bold mb-8 text-center">How It Works</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          <Card>
+            <CardContent className="p-6 text-center">
+              <span className="text-4xl">📝</span>
+              <h4 className="font-semibold mt-4 mb-2">1. Enter Your Prompt</h4>
+              <p className="text-sm text-muted-foreground">Describe your idea in detail. The more creative, the better!</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-6 text-center">
+              <span className="text-4xl">🎨</span>
+              <h4 className="font-semibold mt-4 mb-2">2. Choose Style & Generate</h4>
+              <p className="text-sm text-muted-foreground">Pick an art style and aspect ratio, then let AI do the magic.</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-6 text-center">
+              <span className="text-4xl">📥</span>
+              <h4 className="font-semibold mt-4 mb-2">3. Download & Share</h4>
+              <p className="text-sm text-muted-foreground">Save your favorite images or share them with friends instantly.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
       {/* Example Prompts */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-20">
         <h2 className="text-3xl font-bold mb-8">Get Inspired</h2>
         <div className="flex flex-wrap gap-3 justify-center max-w-4xl mx-auto">
           {[
@@ -79,6 +107,54 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      {/* Testimonials Section */}
+      <div className="mb-20">
+        <h2 className="text-3xl font-bold mb-8 text-center">What Our Users Say</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          <Card>
+            <CardContent className="p-6 text-center">
+              <p className="italic mb-4">“Imagify AI turned my wildest ideas into beautiful art in seconds. The styles are amazing!”</p>
+              <div className="font-semibold">— Alex P.</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-6 text-center">
+              <p className="italic mb-4">“The prompt suggestions are so creative. I love sharing my gallery with friends!”</p>
+              <div className="font-semibold">— Priya S.</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-6 text-center">
+              <p className="italic mb-4">“Super easy to use and the results are stunning. Highly recommend for any creative!”</p>
+              <div className="font-semibold">— Jordan W.</div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="mb-20 max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+        <div className="space-y-6">
+          <div>
+            <h4 className="font-semibold mb-2">Is Imagify AI free to use?</h4>
+            <p className="text-muted-foreground">Yes! You can generate and download images for free. Some advanced features may require an account.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-2">Can I use the images commercially?</h4>
+            <p className="text-muted-foreground">You can use generated images for personal and non-commercial projects. For commercial use, please check our terms of service.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-2">What styles are available?</h4>
+            <p className="text-muted-foreground">We offer a variety of styles including Realistic, Anime, Abstract, Digital Art, and Watercolor.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-2">How do I save or share my images?</h4>
+            <p className="text-muted-foreground">After generating, you can download images or share them directly to social media from your gallery.</p>
+          </div>
+        </div>
+      </div>
     </div>
   )
-} 
+}

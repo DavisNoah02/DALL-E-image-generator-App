@@ -18,7 +18,7 @@ export default function GeneratePage() {
   const [selectedStyle, setSelectedStyle] = useState('realistic')
   const [aspectRatio, setAspectRatio] = useState('square')
   const [showTips, setShowTips] = useState(true)
-  const { user } = useAuth()
+  const { currentUser } = useAuth()
 
   const imageStyles = [
     { id: 'realistic', name: 'Realistic', icon: <Image size={16} /> },
@@ -44,14 +44,14 @@ export default function GeneratePage() {
   ]
 
   useEffect(() => {
-    if (user) {
+    if (currentUser) {
       loadUserImages()
     }
-  }, [user])
+  }, [currentUser])
 
   const loadUserImages = async () => {
     try {
-      const response = await getUserImages(user.uid)
+      const response = await getUserImages(currentUser.uid)
       setSavedImages(response.images || [])
     } catch (error) {
       console.error('Error loading images:', error)
@@ -71,7 +71,7 @@ export default function GeneratePage() {
     const enhancedPrompt = `${prompt} - ${selectedStyle} style`
     
     try {
-      const result = await generateImages(enhancedPrompt, imageCount, user.uid)
+      const result = await generateImages(enhancedPrompt, imageCount, currentUser.uid)
       setGeneratedImages(result.imageUrls)
       await loadUserImages()
       toast.success('Images generated successfully!')

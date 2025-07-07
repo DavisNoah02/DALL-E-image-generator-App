@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { toast } from 'react-toastify'
 
 export default function ProfilePage() {
-  const { user, logout } = useAuth()
+  const { currentUser, logout } = useAuth()
   const [savedImages, setSavedImages] = useState([])
   const [loading, setLoading] = useState(true)
   const [stats, setStats] = useState({
@@ -19,15 +19,15 @@ export default function ProfilePage() {
   })
 
   useEffect(() => {
-    if (user) {
+    if (currentUser) {
       loadUserData()
     }
-  }, [user])
+  }, [currentUser])
 
   const loadUserData = async () => {
     try {
       setLoading(true)
-      const response = await getUserImages(user.uid)
+      const response = await getUserImages(currentUser.uid)
       const images = response.images || []
       setSavedImages(images)
       
@@ -94,8 +94,8 @@ export default function ProfilePage() {
                   <User className="h-8 w-8 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">{user?.displayName || 'User'}</h3>
-                  <p className="text-sm text-muted-foreground">{user?.email}</p>
+                  <h3 className="font-semibold">{currentUser?.displayName || 'User'}</h3>
+                  <p className="text-sm text-muted-foreground">{currentUser?.email}</p>
                 </div>
               </div>
               
@@ -103,12 +103,12 @@ export default function ProfilePage() {
                 <div className="flex items-center gap-2 text-sm">
                   <Mail className="h-4 w-4 text-muted-foreground" />
                   <span className="text-muted-foreground">Email:</span>
-                  <span>{user?.email}</span>
+                  <span>{currentUser?.email}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                   <span className="text-muted-foreground">Member since:</span>
-                  <span>{user?.metadata?.creationTime ? new Date(user.metadata.creationTime).toLocaleDateString() : 'Unknown'}</span>
+                  <span>{currentUser?.metadata?.creationTime ? new Date(currentUser.metadata.creationTime).toLocaleDateString() : 'Unknown'}</span>
                 </div>
               </div>
 
