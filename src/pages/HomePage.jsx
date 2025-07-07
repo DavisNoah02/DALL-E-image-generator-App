@@ -3,10 +3,15 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Sparkles, Zap, Palette, Download } from "lucide-react"
 import { Link } from "react-router-dom"
+import ThemeToggle from "@/components/shared/ThemeToggle"
 
 export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 relative">
+      {/* Theme Toggle Button */}
+      <div className="absolute right-4 top-4 z-10">
+        <ThemeToggle />
+      </div>
       {/* Hero Section */}
       <div className="text-center py-20">
         <div className="flex items-center justify-center gap-2 mb-6">

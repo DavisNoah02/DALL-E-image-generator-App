@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom'
 import { Sparkles } from 'lucide-react'
+import ThemeToggle from '@/components/shared/ThemeToggle'
 
 export default function AuthLayout({ children }) {
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-background flex relative">
+      {/* Theme Toggle Button */}
+      <div className="absolute right-4 top-4 z-10">
+        <ThemeToggle />
+      </div>
       {/* Left side - Auth form */}
       <div className="flex-1 flex items-center justify-center p-8">
         <div className="w-full max-w-md space-y-8">
